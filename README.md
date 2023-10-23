@@ -1,5 +1,10 @@
 # Тестовое задание
 
+Склонировать проект
+```
+git clone git@github.com:SowaSova/docu_test.git
+```
+
 Для запуска через Docker:
 ```
 docker-compose up -d --build
