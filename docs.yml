@@ -1,0 +1,70 @@
+openapi: '2.0'
+info:
+  title: API документация
+  description: API документация для тестового задания
+  version: '1.0'
+paths:
+  /:
+    get:
+      summary: Получить значение по ключу
+      parameters:
+        - name: key
+          in: query
+          type: string
+          required: true
+          description: Ключ объекта
+      responses:
+        '200':
+          description: Успешный ответ
+        '404':
+          description: Ключ не найден
+    post:
+      summary: Создать новый объект с ключом и значением
+      parameters:
+        - name: key
+          in: body
+          schema:
+            type: object
+            properties:
+              key:
+                type: string
+              value:
+                type: string
+            required:
+              - key
+              - value
+      responses:
+        '201':
+          description: Объект успешно создан
+        '400':
+          description: Ключ уже существует
+    put:
+      summary: Обновить значение объекта по ключу
+      parameters:
+        - name: key
+          in: query
+          type: string
+          required: true
+          description: Ключ объекта для обновления значения
+        - name: new_value
+          in: body
+          schema:
+            type: object
+            properties:
+              new_value:
+                type: string
+            required:
+              - new_value
+      responses:
+        '200':
+          description: Значение успешно обновлено
+        '404':
+          description: Ключ не найден
+
+  /all/:
+    get:
+      summary: Получить все объекты из коллекции MongoDB 
+      responses:
+        '200':
+          description: Успешный ответ
+
