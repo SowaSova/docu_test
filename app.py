@@ -25,6 +25,10 @@ def index():
     if request.method == "POST":
         key = str(request.json["key"])
         value = request.json["value"]
+        if key is None or value is None or key == "" or value == "":
+            return {
+                "error": "Неверный запрос"
+            }, HTTPStatus.BAD_REQUEST
         try:
             mongo.db.collection.insert_one({"key": key, "value": value})
             return {"result": "Объект создан"}, HTTPStatus.CREATED
